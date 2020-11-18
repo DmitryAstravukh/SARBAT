@@ -1,0 +1,59 @@
+<IfModule mod_expires.c>
+
+Header append Cache-Control "public"
+
+FileETag MTime Size
+
+ExpiresActive On
+
+ExpiresDefault "access plus 0 minutes"
+
+ExpiresByType image/ico "access plus 1 years"
+
+ExpiresByType text/css "access plus 1 years"
+
+ExpiresByType text/javascript "access plus 1 years"
+
+ExpiresByType image/gif "access plus 1 years"
+
+ExpiresByType image/jpg "access plus 1 years"
+
+ExpiresByType image/jpeg "access plus 1 years"
+
+ExpiresByType image/bmp "access plus 1 years"
+
+ExpiresByType image/png "access plus 1 years"
+
+</IfModule>
+
+	# Перенаправление на gzip файлы
+
+AddEncoding gzip .gz
+ <FilesMatch "\.js.gz$">
+  ForceType text/javascript 
+  Header set Content-Encoding: gzip
+</FilesMatch>
+
+<FilesMatch "\.js$">
+  RewriteEngine On
+  RewriteCond %{HTTP_USER_AGENT} !".*Safari.*"
+  RewriteCond %{HTTP:Accept-Encoding} gzip
+  RewriteCond %{REQUEST_FILENAME}.gz -f
+  RewriteRule (.*)\.js$ $1\.js.gz [L]
+  ForceType text/javascript
+</FilesMatch>
+
+<FilesMatch "\.css.gz$">
+  ForceType text/css
+  Header set Content-Encoding: gzip
+</FilesMatch>
+
+<FilesMatch "\.css$">
+  RewriteEngine On
+  RewriteCond %{HTTP_USER_AGENT} !".*Safari.*"
+  RewriteCond %{HTTP:Accept-Encoding} gzip
+  RewriteCond %{REQUEST_FILENAME}.gz -f
+  RewriteRule (.*)\.css$ $1\.css.gz [L]
+  ForceType text/css
+
+</FilesMatch>
