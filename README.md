@@ -1,3 +1,3 @@
 # SARBAT
-Один из первых макетов для практики верстки
-https://dmitryastravukh.github.io/SARBAT/index.html
+Один из первых макетов для практики верстки <br/>
+Посмотреть можно здесь https://dmitryastravukh.github.io/SARBAT/
